@@ -10,6 +10,10 @@ const app = new Elysia()
       if (!tUrl) throw new Error("Need URL");
       const targetUrl = new URL(tUrl as string);
 
+      if (!['http:', 'https:'].includes(targetUrl.protocol)){
+        throw new Error('Invalid Protocol')
+      }
+
       const tRequest = new Request({
         method: request.method,
         url: tUrl as string,
